@@ -1,0 +1,19 @@
+{
+    "name": "testnodeapp",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yonekura907/testNodeApp.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/yonekura907/testNodeApp/issues"
+    },
+    "homepage": "https://github.com/yonekura907/testNodeApp#readme",
+    "scripts": {
+        "start": "node index.js"
+    }
+}
