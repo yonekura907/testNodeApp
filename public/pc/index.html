@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PC</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script>
+        // socket.ioのインスタンス変数を作成
+        var socket = io();
+
+        $(function () {
+            // サーバからデータを受信
+            socket.on('serverToPc', function (data) {
+                console.log(data);
+                // 受信したデータを表示
+                // var divEl = $('<div>');
+                // divEl.append(data);
+                $('#output').append(data);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
