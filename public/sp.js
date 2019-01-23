@@ -1,5 +1,5 @@
 
-var myId = {
+var myData = {
     id:'',
     hue: 0
 }
@@ -7,11 +7,13 @@ var myId = {
 // socket.ioのインスタンス変数を作成
 var socket = io();
 
-// socket.on('sendSocketId',function(data){
-//     console.log(data);
-//     personalData.id = data.id;
-//     personalData.hue = data.hue * 10;
-// });
+socket.on('sendSocketId',function(data){
+
+    myData.id = data.id;
+    myData.hue = data.hue;
+
+    console.log(myData);
+});
 
 
 
