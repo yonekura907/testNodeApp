@@ -28,26 +28,44 @@ var dotArr = [];
 var clientCount = 0;
 
 io.on('connection', function(socket) {
+
+    // 接続ログ
     console.log('a user connected' + socket.id);
 
+    // 初期設定
     clientCount++;
     if (clientCount > 18) {
         clientCount = 0;
     }
-
     var clientData = {
         id: socket.id,
         hue: clientCount*20
     }
-
     //socket idを送信
     socket.emit('sendSocketId', clientData);
 
-    //
-    // socket.on('chat message', function(msg){
-    //     console.log('message: ' + msg);
-    //     io.emit('chat message', msg);
-    // });
+    var receiveData = {
+        id: socket.id,
+        hue: clientCount*20,
+        x:0,
+        y:0
+    }
+    dotArr.push(receiveData);
+
+
+    //spから受け取る
+    socket.on('spToServer', function(data){
+        for (let i = 0; i < dotArr.length; i++) {
+            if(dotArr[i].id == data.id){
+                dotArr[i].x = data.x;
+                dotArr[i].y = data.y;
+            }
+        }
+        console.log(dotArr);
+
+        //PCにデータを送信
+        socket.broadcast.emit('serverToPc', dotArr);
+    });
 
 
     socket.on('disconnect', function() {
